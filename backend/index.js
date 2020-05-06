@@ -5,7 +5,7 @@ const CronJob = require("cron").CronJob;
 const util = require("./util");
 
 // Cron job
-const schedule = "* 1 * * *";
+const schedule = "0 0 */1 * * *";
 // const shcedult = '00 00 */1 * * * *'
 const testSchedule = "* * * * *";
 const job = new CronJob(
