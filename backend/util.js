@@ -19,6 +19,7 @@ getSensorData = async () => {
     return json;
   } catch (error) {
     console.log(error);
+    token = null;
   }
 };
 
