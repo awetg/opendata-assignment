@@ -1,0 +1,68 @@
+name: test_node_deploy
+
+on:
+  push:
+    branches:
+      - master
+    path:
+      - ".github/workflows/backend.yml"
+      - "backend/**"
+
+env:
+  NODE_VERSION: "14.x" # set this to the node version to use
+
+jobs:
+  test:
+    name: backend_test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: npm install and test
+        run: |
+          cd backend
+          npm install
+          # npm run build --if-present
+          npm run test --if-present
+        env:
+          CI: true
+          
+    name: frontend_test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: npm install, build and test
+        run: |
+          cd frontend
+          npm install
+          # npm run build --if-present
+          npm run test --if-present
+        env:
+          CI: true
+
+  deploy:
+    needs: [test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH and deploy node app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ~/node-github-demo
+            git pull origin master
+            npm install --production
+            # pm2 restart node-app
+            docker-compose build
+            docker-compose up -d
