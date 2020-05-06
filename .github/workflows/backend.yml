@@ -1,0 +1,30 @@
+name: backend_node_app
+
+on:
+  push:
+    branches:
+      - master
+    path:
+      - ".github/workflows/backend.yml"
+      - "backend/**"
+
+env:
+  NODE_VERSION: "14.x" # set this to the node version to use
+
+jobs:
+  test:
+    name: backend_test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: npm install and test
+        run: |
+          npm install
+          # npm run build --if-present
+          npm run test --if-present
+        env:
+        CI: true
