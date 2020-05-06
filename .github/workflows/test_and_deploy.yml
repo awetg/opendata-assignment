@@ -29,8 +29,8 @@ jobs:
           npm run test --if-present
         env:
           CI: true
-    
-  frontend_test:  
+
+  frontend_test:
     name: frontend_test
     runs-on: ubuntu-latest
     steps:
@@ -61,7 +61,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ~/node-github-demo
+            cd ~/dev/opendata-assignment
             git pull origin master
             npm install --production
             # pm2 restart node-app
