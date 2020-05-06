@@ -4,15 +4,15 @@ on:
   push:
     branches:
       - master
-    path:
-      - ".github/workflows/backend.yml"
-      - "backend/**"
+#     paths:
+#       - ".github/workflows/backend.yml"
+#       - "backend/**"
 
 env:
   NODE_VERSION: "14.x" # set this to the node version to use
 
 jobs:
-  test:
+  backend_test:
     name: backend_test
     runs-on: ubuntu-latest
     steps:
@@ -29,8 +29,10 @@ jobs:
           npm run test --if-present
         env:
           CI: true
-          
+    
+  frontend_test:  
     name: frontend_test
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ env.NODE_VERSION }}
@@ -47,7 +49,7 @@ jobs:
           CI: true
 
   deploy:
-    needs: [test]
+    needs: [backend_test, frontend_test]
     runs-on: ubuntu-latest
 
     steps:
