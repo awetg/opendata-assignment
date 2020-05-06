@@ -9,7 +9,7 @@ const schedule = "* 1 * * *";
 // const shcedult = '00 00 */1 * * * *'
 const testSchedule = "* * * * *";
 const job = new CronJob(
-  testSchedule,
+  schedule,
   () => {
     util.getSensorData().then((json) => {
       json["cront_time"] = new Date();
