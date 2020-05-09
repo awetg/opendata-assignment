@@ -32,6 +32,11 @@ You can stop the apps using the command `docker-compose stop`
 
 ## Project Setup
 
+### Test
+
+- Backend covers a test of unhandled api and integraiont test for `/api/events/` by runnig backend and mongo db on docker container
+- Frontend test covered for some components
+
 ### Deployment
 
 On each successfull test and build pipeline code will be deployed to remote server using this [appleboy/ssh-action](https://github.com/appleboy/ssh-action) action, thanks for [appleboy](https://github.com/appleboy) for creating the ssh action. After ssh-ing to the remote server below commands will be run

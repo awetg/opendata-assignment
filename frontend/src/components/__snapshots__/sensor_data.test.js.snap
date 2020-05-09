@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Correct sensor name is render 1`] = `
+<div
+  className="card"
+>
+  <p
+    className="sensor_label"
+  >
+    sensor4
+  </p>
+  <p
+    className="sensor_value"
+  >
+    10.10
+  </p>
+</div>
+`;
+
+exports[`No value text is render for sensor with null values 1`] = `
+<div
+  className="card"
+>
+  <p
+    className="sensor_label"
+  >
+    sensor1
+  </p>
+  <p
+    className="sensor_value danger"
+  >
+    No Value
+  </p>
+</div>
+`;
