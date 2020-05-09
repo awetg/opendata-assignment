@@ -1,38 +1,53 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  margin: 10px auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.card {
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 8px 6px rgba(0, 0, 0, 0.02);
+}
+
+.chart_container {
+  padding: 60px 70px 0px 0px;
+}
+
+.stat_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
+
+.sensor_label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #818ea3;
+}
+
+.sensor_value {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.recharts-cartesian-axis-tick {
+  font-size: 0.8rem;
+}
+
+.danger {
+  color: red;
+}
+
+@media all and (min-width: 600px) {
+  .container {
+    width: 80%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media all and (min-width: 900px) {
+  .container {
+    width: 60%;
   }
 }

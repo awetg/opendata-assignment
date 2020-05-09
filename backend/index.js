@@ -3,11 +3,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const CronJob = require("cron").CronJob;
 const util = require("./util");
+// const cors = require("cors");
 
-// Cron job
+// Cron job, pulling data every hour from assignment API
 const schedule = "0 0 */1 * * *";
-// const shcedult = '00 00 */1 * * * *'
 const testSchedule = "* * * * *";
+
 const job = new CronJob(
   schedule,
   () => {
@@ -40,7 +41,8 @@ mongoose
 
 // express server
 const app = express()
-  .get("/api/events", (req, res) => {
+  // .use(cors())
+  .get("/api/events", (_, res) => {
     data_model
       .find()
       .then((items) => res.status(200).json(items))
