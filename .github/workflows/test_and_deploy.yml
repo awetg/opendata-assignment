@@ -29,10 +29,10 @@ jobs:
       #     npm run test --if-present
       #   env:
       #     CI: true
-      -name: Test
+      - name: Test
         run: |
-        docker-compose build backend
-        docker-compose run backend npm test
+          docker-compose build backend
+          docker-compose run backend npm test
 
   frontend_test:
     name: frontend_test
