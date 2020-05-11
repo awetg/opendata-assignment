@@ -62,5 +62,5 @@ API_PASSWORD= to login to assignment api if the token expires
 The project is not set up for live reload while developing since the project was small. If you want live reload check this [gist](https://gist.github.com/ksmithut/e126f7ddb40b760487a17e8b569a77b5) to set it up, basically
 
 - Install `nodemon` as dev dependency
-- Create `Docker.dev` file referring the gist above for each app (backend and frontend)
-- update `docker-compose.yml` file to use `Docker.dev` file instead of `Docker` file
+- Create `Dockerfile.dev` file referring the gist above for each app (backend and frontend)
+- update `docker-compose.yml` file to use `Dockerfile.dev` file instead of `Dockerfile` file
