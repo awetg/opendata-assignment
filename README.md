@@ -4,7 +4,7 @@
 
 ## Overview
 
-This project is implementation of code assignment from 3UAS. The task was to create a visualization of data supplied by assignment API. This project includes a backend that will pull data every hour and store it to mongo database and implement a single RESTful API endpoint to server the data at `/api/events`, as well as react frontend that will show visualization of the data. The project is hosted on DigitalOcean ubuntu machine and deployed automatically after successfull test and build pipeline using Github Actions. The droplet might not be online after couple of months from the start of this project, but for live demos you can check the at following urls [App URL](142.93.104.153) and [API URL](http://142.93.104.153:3001/api/events) or you can clone and test locally.
+This project is implementation of code assignment from 3UAS. The task was to create a visualization of data supplied by assignment API. This project includes a backend that will pull data every hour and store it to mongo database and implement a single RESTful API endpoint to server the data at `/api/events`, as well as react frontend that will show visualization of the data. The project is hosted on DigitalOcean ubuntu machine and deployed automatically after successfull test and build pipeline using Github Actions. The droplet might not be online after couple of months from the start of this project, but for live demos you can check the at following urls [App URL](http://142.93.104.153) and [API URL](http://142.93.104.153:3001/api/events) or you can clone and test locally.
 
 ## Getting started
 
@@ -23,7 +23,7 @@ Make sure you have installed Docker and docker-compose in your machine
 
 ```sh
 docker-compose build
-docker-compose -up
+docker-compose up -d
 ```
 
 Your react app should now be running on [localhost](http://localhost) and api on [localhost:3001/api/events](http://localhost:3001/api/events). Nginx is used to serve up frontend files and proxy api calls to backend container so that we can use `/api/events` to get our data on react app.
@@ -34,12 +34,12 @@ You can stop the apps using the command `docker-compose stop`
 
 ### Test
 
-- Backend covers a test of unhandled api and integraiont test for `/api/events/` by runnig backend and mongo db on docker container
-- Frontend test covered for some components
+- Backend covers a test of unhandled api endpoints and integration test for `/api/events/` by runnig backend and mongo db on docker container
+- Frontend test covers a test for some components
 
 ### Deployment
 
-On each successfull test and build pipeline code will be deployed to remote server using this [appleboy/ssh-action](https://github.com/appleboy/ssh-action) action, thanks for [appleboy](https://github.com/appleboy) for creating the ssh action. After ssh-ing to the remote server below commands will be run
+On each successfull test and build pipeline the code will be deployed to remote server using this [appleboy/ssh-action](https://github.com/appleboy/ssh-action) action, thanks for [appleboy](https://github.com/appleboy) for creating the ssh action. After ssh-ing to the remote server below commands will be run
 
 ```sh
 cd ~/dev/opendata-assignment

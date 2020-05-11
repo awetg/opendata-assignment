@@ -8,6 +8,8 @@ function App() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [lastSensorData, setLastSensorData] = useState([]);
+
+  // creating labels to easily set names and colors of lines on recharts
   const labels = [
     {
       name: "sensor1",
@@ -27,6 +29,7 @@ function App() {
     },
   ];
 
+  // fetch history data from our backend
   const fetchData = async () => {
     try {
       const json = await fetch("/api/events").then((res) => res.json());
@@ -75,7 +78,7 @@ function App() {
     <div className="App">
       <h3>Open Data</h3>
       {isLoading ? (
-        <div>Loading ...</div>
+        <div className="loader container"></div>
       ) : (
         <>
           <p>Last read sensor data</p>

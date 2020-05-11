@@ -1,9 +1,10 @@
-require("dotenv").config();
+"use strict";
+
+const config = require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const CronJob = require("cron").CronJob;
 const util = require("./util");
-// const cors = require("cors");
 
 // Cron job, pulling data every hour from assignment API
 const schedule = "0 0 */1 * * *";
@@ -12,8 +13,12 @@ const testSchedule = "* * * * *";
 const job = new CronJob(
   schedule,
   () => {
+    // making network call to ge last sensor data
     util.getSensorData().then((json) => {
+      // cron job runs every hour and we are adding that as extra object property since date property in the response doesn't change hourly
       json["cront_time"] = new Date();
+
+      //save data to database
       const new_data = new data_model({ data: json });
       new_data.save((error) => {
         if (error) {
@@ -41,7 +46,6 @@ mongoose
 
 // express server
 const app = express()
-  // .use(cors())
   .get("/api/events", (_, res) => {
     data_model
       .find()

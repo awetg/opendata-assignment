@@ -2,6 +2,8 @@ import React from "react";
 import { create } from "react-test-renderer";
 import SensorData from "./senso_data";
 
+/* eslint-env jest */
+
 it("No value text is render for sensor with null values", () => {
   const tree = create(<SensorData data={{ name: "sensor1", value: null }} />);
 
